@@ -1,0 +1,21 @@
+ 
+ 
+ <!-- Pagination Start -->
+ <ul class="pagination text-center">
+    {% if products.has_previous %}
+    <li><a class="next"  href="?page={{products.previous_page_number}}">Prev</a></li>
+    {% endif %}
+    {% for page in products.paginator.page_range %}
+    {% if products.number > page|add:"-3" and products.number < page|add:'+3' %}
+    {% if page == products.number %}
+    <li><a class="active" href="?page={{products.previou_page_number}}">{{page}}</a></li>
+    {% else %}
+    <li><a href="?page={{page}}">{{page}}</a></li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% if products.has_next %}
+    <li><a class="next" href="?page={{products.next_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.3305 0.239638C4.01103 0.559111 4.01097 1.07718 4.33055 1.39671L11.9338 8.9998L4.3305 16.6033C4.01103 16.9227 4.01097 17.4408 4.33055 17.7603C4.65008 18.0799 5.1681 18.0799 5.48763 17.7603L13.6694 9.57831C13.8229 9.42488 13.9091 9.21678 13.9091 8.9998C13.9091 8.78282 13.8228 8.57468 13.6694 8.42129L5.48757 0.239693C5.1681 -0.0798885 4.65003 -0.0798888 4.3305 0.239638Z"/></svg>Next</a></li>
+{% endif %}
+</ul>
+<!-- Pagination End -->
